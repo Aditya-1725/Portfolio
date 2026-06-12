@@ -137,45 +137,49 @@ function Home() {
         </h2>
 
         <div className="flex justify-center">
-          <div
-            className="
-  grid
-  grid-cols-2
-  sm:grid-cols-3
-  md:grid-cols-4
-  xl:grid-cols-5
-  gap-5
-  justify-items-center
-  "
-          >
-            {skills.map((skill) => (
-              <div
-                key={skill._id}
-                className="
-                w-44
-                h-14
-                bg-[#101010]/80
-                border
-                border-green-500/20
-                rounded-xl
-                flex
-                items-center
-                justify-center
-                hover:border-green-400
-                hover:-translate-y-2
-                hover:scale-105
-                hover:shadow-[0_0_25px_rgba(0,255,136,0.25)]
-                transition-all
-                duration-300
-                "
-              >
-                <p className="text-green-400 font-mono text-[15px] tracking-wide">
-                  {">"} {skill.name}
-                </p>
-              </div>
-            ))}
-          </div>
-        </div>
+  <div
+    className="
+    grid
+    grid-cols-2
+    sm:grid-cols-3
+    md:grid-cols-4
+    xl:grid-cols-5
+    gap-4
+    sm:gap-5
+    place-items-center
+    w-fit
+    mx-auto
+    "
+  >
+    {skills.map((skill) => (
+      <div
+        key={skill._id}
+        className="
+        w-[155px]
+        sm:w-44
+        h-14
+        bg-[#101010]/80
+        border
+        border-green-500/20
+        rounded-xl
+        flex
+        items-center
+        justify-center
+        hover:border-green-400
+        hover:-translate-y-2
+        hover:scale-105
+        hover:shadow-[0_0_25px_rgba(0,255,136,0.25)]
+        transition-all
+        duration-300
+        "
+      >
+        <p className="text-green-400 font-mono text-[14px] sm:text-[15px] tracking-wide">
+          {">"} {skill.name}
+        </p>
+      </div>
+    ))}
+  </div>
+</div>
       </section>
       {/* Featured Experience */}
 

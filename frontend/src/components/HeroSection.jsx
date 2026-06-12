@@ -49,14 +49,18 @@ function HeroSection() {
     <section
       className="
       relative
-      min-h-screen
+      min-h-[90vh]
+      md:min-h-screen
       flex
       items-center
       justify-center
       overflow-hidden
-      px-6
+      px-5
       md:px-10
-      pt-20
+      pt-28
+pb-14
+md:pt-20
+md:pb-0
       "
     >
       {/* Background */}
@@ -76,7 +80,8 @@ function HeroSection() {
         w-full
         grid
         lg:grid-cols-2
-        gap-16
+        gap-10
+        md:gap-14
         lg:gap-24
         items-center
         "
@@ -89,9 +94,9 @@ function HeroSection() {
             text-green-400
             font-mono
             tracking-[0.3em]
-            text-base
+            text-sm
             md:text-lg
-            mb-5
+            mb-4
             "
           >
             {">"} HELLO WORLD_
@@ -99,12 +104,13 @@ function HeroSection() {
 
           <h1
             className="
-            text-6xl
+            text-5xl
+            sm:text-6xl
             md:text-7xl
             lg:text-8xl
             font-black
             leading-none
-            mb-8
+            mb-6
             "
           >
             Aditya
@@ -114,12 +120,10 @@ function HeroSection() {
 
           {/* Typing Title */}
 
-          <div className="h-12 mb-8">
-            <p className="text-xl md:text-2xl font-mono text-gray-300">
+          <div className="h-10 md:h-12 mb-6">
+            <p className="text-lg md:text-2xl font-mono text-gray-300">
               <span className="text-green-400">{">"} </span>
-
               {text}
-
               <span className="text-green-400 animate-pulse ml-1">|</span>
             </p>
           </div>
@@ -127,12 +131,14 @@ function HeroSection() {
           <p
             className="
             text-gray-400
-            text-lg
-            leading-9
+            text-base
+            md:text-lg
+            leading-8
+            md:leading-9
             max-w-xl
             mx-auto
             lg:mx-0
-            mb-10
+            mb-8
             "
           >
             Passionate about building secure web applications, exploring ethical
@@ -142,10 +148,12 @@ function HeroSection() {
 
           {/* Action Buttons */}
 
-          <div className="flex flex-wrap justify-center lg:justify-start gap-5">
+          <div className="flex flex-col sm:flex-row justify-center lg:justify-start items-center gap-5">
             <button
               onClick={() => navigate("/projects")}
               className="
+              w-full
+              sm:w-auto
               px-9
               py-4
               rounded-xl
@@ -166,6 +174,8 @@ function HeroSection() {
             <button
               onClick={() => navigate("/contact")}
               className="
+              w-full
+              sm:w-auto
               px-9
               py-4
               rounded-xl
@@ -209,37 +219,41 @@ function HeroSection() {
             {/* Image Card */}
             <div
               className="
-    relative
-    overflow-hidden
-    rounded-3xl
-    border
-    border-green-500/20
-    bg-[#101010]/70
-    backdrop-blur-md
-    shadow-[0_0_35px_rgba(0,255,136,0.12)]
-    group-hover:-translate-y-2
-    group-hover:shadow-[0_0_45px_rgba(0,255,136,0.2)]
-    transition-all
-    duration-500
-    p-8
-  "
+relative
+overflow-hidden
+rounded-3xl
+border
+border-green-500/20
+bg-[#101010]/70
+backdrop-blur-md
+shadow-[0_0_35px_rgba(0,255,136,0.12)]
+group-hover:-translate-y-2
+group-hover:shadow-[0_0_45px_rgba(0,255,136,0.2)]
+transition-all
+duration-500
+p-2
+sm:p-4
+md:p-6
+"
             >
               <img
                 src="/images/Profile.png"
                 alt="Aditya Vawhal"
                 draggable="false"
                 className="
-    w-[340px]
-    md:w-[400px]
-    lg:w-[430px]
-    h-auto
-    object-cover
-    select-none
-    scale-120
-    transition-transform
-    duration-500
-    group-hover:scale-125
-  "
+                w-[310px]
+sm:w-[350px]
+md:w-[390px]
+lg:w-[430px]
+                h-auto
+                object-cover
+                select-none
+                scale-110
+                md:scale-115
+                transition-transform
+                duration-500
+                group-hover:scale-120
+                "
               />
             </div>
           </div>
