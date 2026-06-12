@@ -11,16 +11,6 @@ function Navbar() {
   const [menuOpen, setMenuOpen] =
     useState(false);
 
-  // Hide Navbar on Admin Pages
-
-  if (
-    location.pathname.startsWith(
-      "/admin"
-    )
-  ) {
-    return null;
-  }
-
   const navItems = [
     {
       name: "Home",
