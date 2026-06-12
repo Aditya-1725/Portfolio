@@ -1,0 +1,176 @@
+/* ========================================= */
+/* Global Animations */
+/* ========================================= */
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes glowPulse {
+  0%,
+  100% {
+    opacity: 0.45;
+    transform: scale(1);
+  }
+
+  50% {
+    opacity: 0.85;
+    transform: scale(1.04);
+  }
+}
+
+@keyframes floatSlow {
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+@keyframes blinkCursor {
+  0%,
+  50% {
+    opacity: 1;
+  }
+
+  51%,
+  100% {
+    opacity: 0;
+  }
+}
+
+/* ========================================= */
+/* Utility Classes */
+/* ========================================= */
+
+.fade-up {
+  animation: fadeUp 0.6s ease forwards;
+}
+
+.fade-in {
+  animation: fadeIn 0.5s ease forwards;
+}
+
+.float-slow {
+  animation: floatSlow 5s ease-in-out infinite;
+}
+
+.glow-pulse {
+  animation: glowPulse 4s ease-in-out infinite;
+}
+
+.cursor-blink {
+  animation: blinkCursor 1s step-end infinite;
+}
+
+/* ========================================= */
+/* Card Utilities */
+/* ========================================= */
+
+.cyber-card {
+  background: rgba(16, 16, 16, 0.85);
+  border: 1px solid rgba(0, 255, 136, 0.12);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  transition: all 0.3s ease;
+}
+
+.cyber-card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(0, 255, 136, 0.4);
+  box-shadow: 0 0 24px rgba(0, 255, 136, 0.12);
+}
+
+/* ========================================= */
+/* Terminal Helpers */
+/* ========================================= */
+
+.terminal-window {
+  background: #0a0a0a;
+  border: 1px solid rgba(0, 255, 136, 0.15);
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.terminal-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 20px;
+  border-bottom: 1px solid rgba(0, 255, 136, 0.08);
+  background: #0d0d0d;
+}
+
+.terminal-body {
+  padding: 28px;
+  font-family: "Courier New", monospace;
+}
+
+/* ========================================= */
+/* Reusable Section Heading */
+/* ========================================= */
+
+.section-title {
+  font-size: clamp(2.5rem, 5vw, 3.75rem);
+  font-weight: 800;
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.section-subtitle {
+  max-width: 700px;
+  margin: 0 auto 4rem;
+  text-align: center;
+  color: #9ca3af;
+  line-height: 1.8;
+}
+
+/* ========================================= */
+/* Image Polish */
+/* ========================================= */
+
+.image-hover {
+  overflow: hidden;
+}
+
+.image-hover img {
+  transition: transform 0.4s ease;
+}
+
+.image-hover:hover img {
+  transform: scale(1.04);
+}
+
+/* ========================================= */
+/* Responsive */
+/* ========================================= */
+
+@media (max-width: 768px) {
+  .terminal-body {
+    padding: 20px;
+  }
+
+  .section-subtitle {
+    margin-bottom: 3rem;
+    padding: 0 12px;
+  }
+}
