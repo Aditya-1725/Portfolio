@@ -19,10 +19,7 @@ const login = async (req, res) => {
       });
     }
 
-    const isMatch = await bcrypt.compare(
-      password,
-      admin.password
-    );
+    const isMatch = await bcrypt.compare(password, admin.password);
 
     if (!isMatch) {
       return res.status(401).json({
@@ -37,7 +34,7 @@ const login = async (req, res) => {
       process.env.JWT_SECRET,
       {
         expiresIn: "7d",
-      }
+      },
     );
 
     res.json({
@@ -52,46 +49,34 @@ const login = async (req, res) => {
   }
 };
 
-const forgotPassword = async (
-  req,
-  res
-) => {
+const forgotPassword = async (req, res) => {
   try {
     const { email } = req.body;
 
-    const admin =
-      await Admin.findOne({
-        email:
-          email.toLowerCase(),
-      });
+    const admin = await Admin.findOne({
+      email: email.toLowerCase(),
+    });
 
     if (!admin) {
       return res.status(404).json({
-        message:
-          "Administrator account not found",
+        message: "Administrator account not found",
       });
     }
 
     // Generate Reset Token
 
-    const resetToken =
-      crypto
-        .randomBytes(32)
-        .toString("hex");
+    const resetToken = crypto.randomBytes(32).toString("hex");
 
     // Store Hashed Token
 
-    admin.resetPasswordToken =
-      crypto
-        .createHash("sha256")
-        .update(resetToken)
-        .digest("hex");
+    admin.resetPasswordToken = crypto
+      .createHash("sha256")
+      .update(resetToken)
+      .digest("hex");
 
     // 15 Minutes Expiry
 
-    admin.resetPasswordExpire =
-      Date.now() +
-      15 * 60 * 1000;
+    admin.resetPasswordExpire = Date.now() + 15 * 60 * 1000;
 
     await admin.save();
 
@@ -137,14 +122,12 @@ const forgotPassword = async (
 
     await sendEmail({
       email: admin.email,
-      subject:
-        "Portfolio Admin Password Reset",
+      subject: "Portfolio Admin Password Reset",
       message,
     });
 
     res.json({
-      message:
-        "Recovery email sent successfully",
+      message: "Recovery email sent successfully",
     });
   } catch (error) {
     res.status(500).json({
@@ -153,64 +136,44 @@ const forgotPassword = async (
   }
 };
 
-const resetPassword = async (
-  req,
-  res
-) => {
+const resetPassword = async (req, res) => {
   try {
-    const resetPasswordToken =
-      crypto
-        .createHash("sha256")
-        .update(req.params.token)
-        .digest("hex");
+    const resetPasswordToken = crypto
+      .createHash("sha256")
+      .update(req.params.token)
+      .digest("hex");
 
-    const admin =
-      await Admin.findOne({
-        resetPasswordToken,
-        resetPasswordExpire: {
-          $gt: Date.now(),
-        },
-      });
+    const admin = await Admin.findOne({
+      resetPasswordToken,
+      resetPasswordExpire: {
+        $gt: Date.now(),
+      },
+    });
 
     if (!admin) {
       return res.status(400).json({
-        message:
-          "Invalid or expired reset link",
+        message: "Invalid or expired reset link",
       });
     }
 
-    const {
-      password,
-      confirmPassword,
-    } = req.body;
+    const { password, confirmPassword } = req.body;
 
-    if (
-      password !==
-      confirmPassword
-    ) {
+    if (password !== confirmPassword) {
       return res.status(400).json({
-        message:
-          "Passwords do not match",
+        message: "Passwords do not match",
       });
     }
 
-    admin.password =
-      await bcrypt.hash(
-        password,
-        10
-      );
+    admin.password = await bcrypt.hash(password, 10);
 
-    admin.resetPasswordToken =
-      "";
+    admin.resetPasswordToken = "";
 
-    admin.resetPasswordExpire =
-      undefined;
+    admin.resetPasswordExpire = undefined;
 
     await admin.save();
 
     res.json({
-      message:
-        "Password updated successfully",
+      message: "Password updated successfully",
     });
   } catch (error) {
     res.status(500).json({
